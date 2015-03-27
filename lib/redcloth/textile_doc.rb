@@ -55,6 +55,16 @@ module RedCloth
     # suppressed.
     #
     attr_accessor :no_span_caps
+    
+    # 
+    # If +:auto_link+ is set, plaintext urls will be
+    # turned into anchor elements.
+    #   
+    #   r = RedCloth.new( "Welcome http://zombo.com/", [:auto_link] )
+    #   r.to_html
+    #   #=> "<p>Welcome <a href="http://zombo.com/">http://zombo.com/</a></p>"
+    #   
+    attr_accessor :auto_link_urls
 
     # Returns a new RedCloth object, based on _string_, observing 
     # any _restrictions_ specified.

@@ -114,6 +114,13 @@ module RedCloth::Formatters::HTML
     "<a href=\"#{escape_attribute opts[:href]}\"#{pba(opts)}>#{opts[:name]}</a>"
   end
   
+  def auto_link(opts)
+    return opts[:href] unless auto_link_urls
+    href_with_proto = opts[:href]
+    href_with_proto = 'http://' + href_with_proto unless href_with_proto.index('http') == 0
+    "<a href=\"#{escape_attribute href_with_proto}\">#{escape_attribute opts[:href]}</a>"
+  end
+  
   def image(opts)
     opts.delete(:align)
     opts[:alt] = opts[:title]

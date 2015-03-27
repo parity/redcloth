@@ -201,6 +201,13 @@ module RedCloth::Formatters::LATEX
     "\\href{#{opts[:href]}}{#{opts[:name]}}"
   end
   
+  def auto_link(opts)
+    return opts[:href] unless auto_link_urls
+    href_with_proto = opts[:href]
+    href_with_proto = 'http://' + href_with_proto unless href_with_proto.index('http') == 0
+    "\\href{#{href_with_proto}}{#{opts[:href]}}"
+  end
+  
   # FIXME: use includegraphics with security verification
   #
   # Remember to use '\RequirePackage{graphicx}' in your LaTeX header
