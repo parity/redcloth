@@ -119,7 +119,7 @@ module RedCloth::Formatters::HTML
     href_with_proto = opts[:href]
     href_with_proto = 'http://' + href_with_proto unless href_with_proto.index('http') == 0
     text = opts[:href]
-    text = text[0, text.length - 6] + text[-5,3].replace("...") + text[-2..-1]
+    text = text[0, [text.length - 6, 47].max] + text[-5,3].replace("...") + text[-2..-1]
     "<a href=\"#{escape_attribute href_with_proto}\">#{escape_attribute text}</a>"
   end
   
