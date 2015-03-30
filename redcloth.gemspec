@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary     = RedCloth::SUMMARY
   s.email       = "jimish@desidime.com"
   s.homepage    = "http://redcloth.org"
-  s.rubyforge_project = "parity-redcloth"
+  s.rubyforge_project = "redcloth"
 
   s.rubygems_version   = "1.3.7"
   s.default_executable = "redcloth"
@@ -38,7 +38,7 @@ Gem::Specification.new do |s|
     s.extensions = Dir['ext/**/extconf.rb']
   end
 
-  s.add_development_dependency('bundler', '~> 1.3.4')
+  s.add_development_dependency('bundler', '~> 1.9.1')
   s.add_development_dependency('rake', '~> 10.0.3')
   s.add_development_dependency('rspec', '~> 2.4')
   s.add_development_dependency('diff-lcs', '~> 1.1.2')

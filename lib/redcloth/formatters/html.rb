@@ -118,7 +118,9 @@ module RedCloth::Formatters::HTML
     return opts[:href] unless auto_link_urls
     href_with_proto = opts[:href]
     href_with_proto = 'http://' + href_with_proto unless href_with_proto.index('http') == 0
-    "<a href=\"#{escape_attribute href_with_proto}\">#{escape_attribute opts[:href]}</a>"
+    text = opts[:href]
+    text = truncate(text[0, text.length - 6] + text[-5,3].replace("...") + text[-2..-1], :length => 50)
+    "<a href=\"#{escape_attribute href_with_proto}\">#{escape_attribute text}</a>"
   end
   
   def image(opts)
