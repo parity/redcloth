@@ -114,12 +114,19 @@ module RedCloth::Formatters::HTML
     "<a href=\"#{escape_attribute opts[:href]}\"#{pba(opts)}>#{opts[:name]}</a>"
   end
   
+  def truncate(text, length = 30, truncate_string = "...")
+    if text.nil? then return end
+    l = length - truncate_string.chars.to_a.size
+    (text.chars.to_a.size > length ? text.chars.to_a[0...l].join + truncate_string : text).to_s
+  end
+  
   def auto_link(opts)
     return opts[:href] unless auto_link_urls
     href_with_proto = opts[:href]
+    return if !href_with_proto
     href_with_proto = 'http://' + href_with_proto unless href_with_proto.index('http') == 0
     text = opts[:href]
-    text = truncate(text[0, text.length - 6] + text[-5,3].replace("...") + text[-2..-1], {:length => 50})
+    text = truncate(text[0, text.length - 6] + text[-5,3].replace("...") + text[-2..-1], 50)
     "<a href=\"#{escape_attribute href_with_proto}\">#{escape_attribute text}</a>"
   end
   
